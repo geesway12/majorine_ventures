@@ -1,0 +1,34 @@
+# 🔒 System files (do not commit)
+.DS_Store
+Thumbs.db
+*.swp
+
+# 🔧 IDE/editor config (optional)
+.vscode/
+.idea/
+*.code-workspace
+
+# 🛠 Admin-only tools (keep private)
+admin.html
+sales.html
+sales_export.html
+
+# 📁 Local/backup files
+*.log
+*.bak
+*.tmp
+*.xlsx
+
+# 🔐 Private product data (only use locally)
+data/products.json
+data/products.csv
+
+# 🧪 Test scripts or custom tooling
+scripts/
+env/
+.env
+.env.local
+
+# ⚙️ Dev-only service worker versions (optional)
+workbox-*.js
+service-worker-dev.js

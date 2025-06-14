@@ -1,0 +1,22 @@
+{
+  "name": "Majorine Ventures",
+  "short_name": "Majorine",
+  "description": "Offline-first Ghana storefront for preorders and local sales",
+  "start_url": "shop.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#198754",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
