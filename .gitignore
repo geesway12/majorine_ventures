@@ -21,7 +21,7 @@ sales_export.html
 
 # 🔐 Private product data (only use locally)
 data/products.json
-data/products.csv
+#data/products.csv
 
 # 🧪 Test scripts or custom tooling
 scripts/

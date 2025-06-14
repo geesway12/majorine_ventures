@@ -1,0 +1,8 @@
+﻿name;category;image;price_usd;price_rmb;cbm;weight_kg;china_shipping;shipping_type;freight_category;final_price;available
+iPhone 13;Phones;13.png;650;;;;2;phone;general;;preorder
+Power Bank;Accessories;p1.png;;23;;;3;air;battery;;preorder
+Body Cream;Cosmetics;3.jpg;;25;;;5;air_express;general;;preorder
+Samsung A14;Phones;a14.png;150;;;;6;phone;general;;preorder
+Ladies Sandals;Shoes;1.png;;25;;;7;pay_on_arrival;general;;preorder
+Ladies Slippers;Shoes;2.png;;21;;;2;pay_on_arrival;general;;preorder
+Sandals;Shoes;3.png;;21;;;0;pay_on_arrival;general;;preorder
