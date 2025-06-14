@@ -72,6 +72,7 @@
   </div>
 </div>
 
+<script src="libs/papaparse.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   const productList = document.getElementById('productList');
@@ -81,18 +82,22 @@
 
   function renderProducts(list) {
     productList.innerHTML = '';
-    list.slice(0, 12).forEach(p => {
-      if (!p.available) return;
+    list.forEach(p => {
       const card = document.createElement('div');
       card.className = 'col';
+      const badge = p.available === 'preorder'
+        ? (p.shipping_type === 'sea' ? '📦 Ships in 5–6 weeks' : '📦 Ships in 2 weeks')
+        : (p.shipping_type === 'pay_on_arrival' ? `Shipping on arrival (Max GHS ${Math.ceil(p.final_price * 2)})` :
+           p.shipping_type.includes('air') || p.shipping_type === 'phone' ? `Air Shipping included (${p.freight_category})` :
+           `Sea Cargo included (${p.freight_category})`);
       card.innerHTML = `
         <div class="product-card h-100 d-flex flex-column justify-content-between">
           <div>
             <img src="assets/images/${p.category.toLowerCase()}/${p.image}" alt="${p.name}" />
             <h5 class="mt-2">${p.name}</h5>
             <p class="mb-1"><strong>Category:</strong> ${p.category}</p>
-            <p class="mb-1"><strong>Price:</strong> GHS ${p.finalPrice}</p>
-            <span class="badge bg-info text-dark badge-ship">${p.shippingNote}</span>
+            <p class="mb-1"><strong>Price:</strong> GHS ${p.final_price}</p>
+            <span class="badge bg-info text-dark badge-ship">${badge}</span>
           </div>
           <button class="btn btn-sm btn-success mt-2" onclick="openOrder('${p.name}')">Order Now</button>
         </div>
@@ -104,13 +109,10 @@
   function updateFilters() {
     const search = searchBox.value.toLowerCase();
     const category = categoryFilter.value.toLowerCase();
-
-    const filtered = products.filter(p => {
-      const matchesSearch = p.name.toLowerCase().includes(search) || p.category.toLowerCase().includes(search);
-      const matchesCategory = !category || p.category.toLowerCase() === category;
-      return matchesSearch && matchesCategory;
-    });
-
+    const filtered = products.filter(p =>
+      (p.name.toLowerCase().includes(search) || p.category.toLowerCase().includes(search)) &&
+      (!category || p.category.toLowerCase() === category)
+    );
     renderProducts(filtered);
   }
 
@@ -121,33 +123,19 @@
 
   document.getElementById('orderForm').onsubmit = function (e) {
     e.preventDefault();
-    const product = document.getElementById('selectedProductName').value;
-    const name = document.getElementById('buyerName').value;
-    const phone = document.getElementById('buyerPhone').value;
-    const location = document.getElementById('buyerLocation').value;
-    const date = new Date().toLocaleString();
-    const status = 'Pending';
-
-    // Save to localStorage
-    const order = { product, name, phone, location, date, status };
+    const order = {
+      product: document.getElementById('selectedProductName').value,
+      name: document.getElementById('buyerName').value,
+      phone: document.getElementById('buyerPhone').value,
+      location: document.getElementById('buyerLocation').value,
+      date: new Date().toLocaleString(),
+      status: 'Pending'
+    };
     const existing = JSON.parse(localStorage.getItem('sales') || '[]');
     existing.push(order);
     localStorage.setItem('sales', JSON.stringify(existing));
-
-    // Format WhatsApp message
-    const message = `🛒 *Order from Majorine Storefront*:%0A` +
-      `🧾 Product: ${product}%0A` +
-      `👤 Name: ${name}%0A` +
-      `📞 Phone: ${phone}%0A` +
-      `📍 Location: ${location}%0A` +
-      `📅 Date: ${date}`;
-
-    // Replace with your WhatsApp number (e.g. 233... no + or leading 0)
-    const whatsappNumber = '+233269609634';
-    const url = `https://wa.me/message/ELHL6MNXBJ2ZN1?text=${message}`;
-    window.open(url, '_blank');
-
-    // Reset form and close modal
+    const msg = `🛒 *Order from Majorine Storefront*:%0A🧾 Product: ${order.product}%0A👤 Name: ${order.name}%0A📞 Phone: ${order.phone}%0A📍 Location: ${order.location}%0A📅 Date: ${order.date}`;
+    window.open(`https://wa.me/233269609634?text=${msg}`, '_blank');
     e.target.reset();
     bootstrap.Modal.getInstance(document.getElementById('orderModal')).hide();
   };
@@ -155,85 +143,37 @@
   searchBox.addEventListener('input', updateFilters);
   categoryFilter.addEventListener('change', updateFilters);
 
-  async function loadProducts() {
-    const local = localStorage.getItem('products');
-    if (local) {
-      products = JSON.parse(local);
-    } else {
-      try {
-        const res = await fetch('data/products.json');
-        products = await res.json();
-        localStorage.setItem('products', JSON.stringify(products));
-      } catch {
-        productList.innerHTML = '<p class="text-danger">❌ Failed to load products.</p>';
-        return;
-      }
+  Papa.parse('data/products.csv', {
+    header: true,
+    download: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+      products = results.data.map(p => ({
+        name: p.name,
+        category: p.category,
+        image: p.image,
+        price_usd: parseFloat(p.price_usd) || 0,
+        price_rmb: parseFloat(p.price_rmb) || 0,
+        cbm: parseFloat(p.cbm) || 0,
+        weight_kg: parseFloat(p.weight_kg) || 0,
+        china_shipping: parseFloat(p.china_shipping) || 0,
+        shipping_type: p.shipping_type?.toLowerCase(),
+        freight_category: p.freight_category?.toLowerCase() || 'general',
+        final_price: parseFloat(p.final_price) || 0,
+        available: p.available?.toLowerCase()
+      })).filter(p => p.available === 'available' || p.available === 'preorder');
+
+      const categories = [...new Set(products.map(p => p.category))];
+      categories.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat;
+        opt.textContent = cat;
+        categoryFilter.appendChild(opt);
+      });
+
+      renderProducts(products);
     }
-
-    const categories = [...new Set(products.map(p => p.category))];
-    categories.forEach(cat => {
-      const opt = document.createElement('option');
-      opt.value = cat;
-      opt.textContent = cat;
-      categoryFilter.appendChild(opt);
-    });
-
-    renderProducts(products);
-  }
-
-  window.onload = loadProducts;
-</script>
-
-<!-- PWA: Install prompt -->
-<script>
-  let deferredPrompt;
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const btn = document.createElement('button');
-    btn.className = 'btn btn-warning fixed-bottom w-100';
-    btn.textContent = '📲 Install this App';
-    btn.onclick = () => {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(() => btn.remove());
-    };
-    document.body.appendChild(btn);
   });
-</script>
-
-<!-- PWA: Update available prompt -->
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js').then(reg => {
-      reg.onupdatefound = () => {
-        const newWorker = reg.installing;
-        newWorker.onstatechange = () => {
-          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            const alertDiv = document.createElement('div');
-            alertDiv.className = 'alert alert-info fixed-bottom text-center mb-0';
-            alertDiv.innerHTML = '🔄 New version available. <button class="btn btn-sm btn-primary">Refresh</button>';
-            alertDiv.querySelector('button').onclick = () => {
-              newWorker.postMessage('SKIP_WAITING');
-              window.location.reload();
-            };
-            document.body.appendChild(alertDiv);
-          }
-        };
-      };
-    });
-  }
-</script>
-
-<!-- iOS install guide -->
-<script>
-  const isIOS = /iphone|ipad/i.test(navigator.userAgent);
-  const isInStandalone = window.navigator.standalone === true;
-  if (isIOS && !isInStandalone) {
-    const iosTip = document.createElement('div');
-    iosTip.className = 'alert alert-warning fixed-bottom text-center mb-0';
-    iosTip.innerHTML = '📱 To install, tap <strong>Share</strong> → "Add to Home Screen"';
-    document.body.appendChild(iosTip);
-  }
 </script>
 
 </body>
