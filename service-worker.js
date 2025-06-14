@@ -1,4 +1,4 @@
-const CACHE_NAME = 'majorine-ventures-v4';
+const CACHE_NAME = 'majorine-ventures-v5';
 const FILES_TO_CACHE = [
   'shop.html',
   'admin.html',
