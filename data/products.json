@@ -1,0 +1,58 @@
+[
+  {
+    "name": "iPhone 13",
+    "category": "Phones",
+    "image": "13.png",
+    "salesPrice": 11680,
+    "shippingNote": "📦 Ships in 2 weeks",
+    "available": "preorder"
+  },
+  {
+    "name": "Power Bank",
+    "category": "Accessories",
+    "image": "p1.png",
+    "salesPrice": 65,
+    "shippingNote": "📦 Ships in 2 weeks",
+    "available": "preorder"
+  },
+  {
+    "name": "Body Cream",
+    "category": "Cosmetics",
+    "image": "3.jpg",
+    "salesPrice": 75,
+    "shippingNote": "📦 Ships in 2 weeks",
+    "available": "preorder"
+  },
+  {
+    "name": "Samsung A14",
+    "category": "Phones",
+    "image": "a14.png",
+    "salesPrice": 2814,
+    "shippingNote": "📦 Ships in 2 weeks",
+    "available": "preorder"
+  },
+  {
+    "name": "Ladies Sandals",
+    "category": "Shoes",
+    "image": "1.png",
+    "salesPrice": 80,
+    "shippingNote": "",
+    "available": "preorder"
+  },
+  {
+    "name": "Ladies Slippers",
+    "category": "Shoes",
+    "image": "2.png",
+    "salesPrice": 57,
+    "shippingNote": "",
+    "available": "preorder"
+  },
+  {
+    "name": "Sandals",
+    "category": "Shoes",
+    "image": "3.png",
+    "salesPrice": 52,
+    "shippingNote": "",
+    "available": "preorder"
+  }
+]

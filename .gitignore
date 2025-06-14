@@ -20,8 +20,8 @@ sales_export.html
 *.xlsx
 
 # 🔐 Private product data (only use locally)
-data/products.json
-#data/products.csv
+#data/products.json
+data/products.csv
 
 # 🧪 Test scripts or custom tooling
 scripts/
