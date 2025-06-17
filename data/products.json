@@ -1,58 +1,533 @@
 [
   {
-    "name": "iPhone 13",
-    "category": "Phones",
-    "image": "13.png",
-    "salesPrice": 11680,
-    "shippingNote": "📦 Ships in 2 weeks",
+    "name": "2025 Spring/Autumn Men’s British Loafers (Black, Size 42)",
+    "category": "Shoes",
+    "image": "1.jpg",
+    "salesPrice": 971,
+    "profit": 176,
+    "commission": 88,
     "available": "preorder"
   },
   {
-    "name": "Power Bank",
+    "name": "Double-Ear Flat Cast Iron Frying Pans (28cm, 32cm, 40cm, 60cm)",
+    "category": "Kitchenware",
+    "image": "2.jpg",
+    "salesPrice": 68,
+    "profit": 12,
+    "commission": 6,
+    "available": "preorder"
+  },
+  {
+    "name": "4109 Rainbow Cat-Eye Glasses – Pearl Decor (Red, Blue Frames)",
     "category": "Accessories",
-    "image": "p1.png",
-    "salesPrice": 65,
-    "shippingNote": "📦 Ships in 2 weeks",
-    "available": "preorder"
-  },
-  {
-    "name": "Body Cream",
-    "category": "Cosmetics",
     "image": "3.jpg",
-    "salesPrice": 75,
-    "shippingNote": "📦 Ships in 2 weeks",
+    "salesPrice": 26,
+    "profit": 5,
+    "commission": 2,
     "available": "preorder"
   },
   {
-    "name": "Samsung A14",
-    "category": "Phones",
-    "image": "a14.png",
-    "salesPrice": 2814,
-    "shippingNote": "📦 Ships in 2 weeks",
-    "available": "preorder"
-  },
-  {
-    "name": "Ladies Sandals",
+    "name": "2024 Embroidered Slip-On Home Slides (Black & White; Sizes 35–41)",
     "category": "Shoes",
-    "image": "1.png",
+    "image": "4.jpg",
+    "salesPrice": 188,
+    "profit": 34,
+    "commission": 17,
+    "available": "preorder"
+  },
+  {
+    "name": "Jumbo Braid Synthetic Hair Extensions (12 Colors)",
+    "category": "Beauty",
+    "image": "5.jpg",
+    "salesPrice": 24,
+    "profit": 4,
+    "commission": 2,
+    "available": "preorder"
+  },
+  {
+    "name": "2025 Summer H-Type Flat Sandals – Women’s Slides (Black & White; Sizes 37–38)",
+    "category": "Shoes",
+    "image": "6.jpg",
+    "salesPrice": 59,
+    "profit": 11,
+    "commission": 5,
+    "available": "preorder"
+  },
+  {
+    "name": "Korean-Style Rhinestone Block Heel H-Slippers (Black; Sizes 37–38)",
+    "category": "Shoes",
+    "image": "7.jpg",
+    "salesPrice": 139,
+    "profit": 25,
+    "commission": 13,
+    "available": "preorder"
+  },
+  {
+    "name": "Exfoliating Lip Scrub (15g Tub – Strawberry, Honey Variants)",
+    "category": "Beauty",
+    "image": "8.jpg",
+    "salesPrice": 9,
+    "profit": 2,
+    "commission": 1,
+    "available": "preorder"
+  },
+  {
+    "name": "Medical Brooch Pins – Stethoscope & Heart Icons (XZ169)",
+    "category": "Accessories",
+    "image": "9.jpg",
+    "salesPrice": 12,
+    "profit": 2,
+    "commission": 1,
+    "available": "preorder"
+  },
+  {
+    "name": "2024 Trendy Square Optical Frames – Men/Women (Black, Clear, Pink, Leopard)",
+    "category": "Accessories",
+    "image": "10.jpg",
+    "salesPrice": 11,
+    "profit": 2,
+    "commission": 1,
+    "available": "preorder"
+  },
+  {
+    "name": "Retro Cat-Eye Anti-Blue Light Glasses – Pink/Blue Frames",
+    "category": "Accessories",
+    "image": "11.jpg",
+    "salesPrice": 11,
+    "profit": 2,
+    "commission": 1,
+    "available": "preorder"
+  },
+  {
+    "name": "2024 Transparent INS Style Optical Glasses – Pink Frame",
+    "category": "Accessories",
+    "image": "12.jpg",
+    "salesPrice": 8,
+    "profit": 1,
+    "commission": 1,
+    "available": "preorder"
+  },
+  {
+    "name": "2.0L Electric Kettle (R.7928) – Stainless Steel, Auto Shut-Off",
+    "category": "Electronics",
+    "image": "13.jpg",
+    "salesPrice": 58,
+    "profit": 10,
+    "commission": 5,
+    "available": "preorder"
+  },
+  {
+    "name": "RAF 32L Air Fryer Oven Combo (R.5331) – Large Capacity",
+    "category": "Electronics",
+    "image": "14.jpg",
+    "salesPrice": 724,
+    "profit": 132,
+    "commission": 66,
+    "available": "preorder"
+  },
+  {
+    "name": "2.0L Steel Electric Kettle – Gift Package (R.7816)",
+    "category": "Electronics",
+    "image": "15.jpg",
+    "salesPrice": 48,
+    "profit": 9,
+    "commission": 4,
+    "available": "preorder"
+  },
+  {
+    "name": "2.5L Electric Kettle (ACL-7916) – Stainless Steel, Large Size",
+    "category": "Electronics",
+    "image": "16.jpg",
+    "salesPrice": 113,
+    "profit": 21,
+    "commission": 10,
+    "available": "preorder"
+  },
+  {
+    "name": "RAF 3-in-1 Food Processor (R.6676B) – Mixer, Blender, Grinder",
+    "category": "Electronics",
+    "image": "17.jpg",
+    "salesPrice": 1053,
+    "profit": 191,
+    "commission": 96,
+    "available": "preorder"
+  },
+  {
+    "name": "Multifunctional Kitchen Blender & Juicer Combo (R.2843)",
+    "category": "Electronics",
+    "image": "18.jpg",
+    "salesPrice": 267,
+    "profit": 49,
+    "commission": 24,
+    "available": "preorder"
+  },
+  {
+    "name": "Foldable Outdoor Camping Cookware Set (4–7 pcs)",
+    "category": "Kitchenware",
+    "image": "19.jpg",
+    "salesPrice": 224,
+    "profit": 41,
+    "commission": 20,
+    "available": "preorder"
+  },
+  {
+    "name": "12-Piece Stainless Steel Cookware Set (Black)",
+    "category": "Kitchenware",
+    "image": "20.jpg",
+    "salesPrice": 164,
+    "profit": 30,
+    "commission": 15,
+    "available": "preorder"
+  },
+  {
+    "name": "Electric Cooking Pot 10L (220V, 12L per 5pcs set)",
+    "category": "Electronics",
+    "image": "21.jpg",
+    "salesPrice": 405,
+    "profit": 74,
+    "commission": 37,
+    "available": "preorder"
+  },
+  {
+    "name": "Multifunction Hot Pot – 9L with Wooden Handle",
+    "category": "Kitchenware",
+    "image": "22.jpg",
+    "salesPrice": 228,
+    "profit": 41,
+    "commission": 21,
+    "available": "preorder"
+  },
+  {
+    "name": "AUX 4L Steamer Pot – All-in-One Electric Cooker",
+    "category": "Electronics",
+    "image": "23.jpg",
+    "salesPrice": 133,
+    "profit": 24,
+    "commission": 12,
+    "available": "preorder"
+  },
+  {
+    "name": "7.5L Multi-Function Steamer Cooker (32cm)",
+    "category": "Electronics",
+    "image": "24.jpg",
+    "salesPrice": 216,
+    "profit": 39,
+    "commission": 20,
+    "available": "preorder"
+  },
+  {
+    "name": "Mini 3-in-1 Rice Cooker (1.5L & 3L options)",
+    "category": "Electronics",
+    "image": "25.jpg",
+    "salesPrice": 145,
+    "profit": 26,
+    "commission": 13,
+    "available": "preorder"
+  },
+  {
+    "name": "5.0L Smart Electric Cooking Pot – Non-stick, 28cm",
+    "category": "Electronics",
+    "image": "26.jpg",
+    "salesPrice": 145,
+    "profit": 26,
+    "commission": 13,
+    "available": "preorder"
+  },
+  {
+    "name": "Steel-Coated Smart Pot with Inner Glass Lid",
+    "category": "Electronics",
+    "image": "27.jpg",
+    "salesPrice": 184,
+    "profit": 33,
+    "commission": 17,
+    "available": "preorder"
+  },
+  {
+    "name": "High-Security Door – Anti-Theft Steel (1970×860mm)",
+    "category": "Home Hardware",
+    "image": "28.jpg",
+    "salesPrice": 959,
+    "profit": 174,
+    "commission": 87,
+    "available": "preorder"
+  },
+  {
+    "name": "Triple-Layer Soundproof Glass Sliding Window",
+    "category": "Home Hardware",
+    "image": "29.jpg",
+    "salesPrice": 2955,
+    "profit": 537,
+    "commission": 269,
+    "available": "preorder"
+  },
+  {
+    "name": "Home Security Steel Entry Door – 1970×860mm",
+    "category": "Home Hardware",
+    "image": "30.jpg",
+    "salesPrice": 2074,
+    "profit": 377,
+    "commission": 189,
+    "available": "preorder"
+  },
+  {
+    "name": "Foldable Metal Bed – 100cm Pine Board Frame",
+    "category": "Home Furniture",
+    "image": "31.jpg",
+    "salesPrice": 502,
+    "profit": 91,
+    "commission": 46,
+    "available": "preorder"
+  },
+  {
+    "name": "Foldable Double Iron Bed – 1.2m Soft Headboard",
+    "category": "Home Furniture",
+    "image": "32.jpg",
+    "salesPrice": 583,
+    "profit": 106,
+    "commission": 53,
+    "available": "preorder"
+  },
+  {
+    "name": "Blueberry Aloe Dual-Layer Hydrating Sheet Mask",
+    "category": "Beauty",
+    "image": "33.jpg",
+    "salesPrice": 1,
+    "profit": 0,
+    "commission": 0,
+    "available": "preorder"
+  },
+  {
+    "name": "RAVE NOW Women’s Perfume – 100ml (Export Edition)",
+    "category": "Beauty",
+    "image": "34.jpg",
+    "salesPrice": 76,
+    "profit": 14,
+    "commission": 7,
+    "available": "preorder"
+  },
+  {
+    "name": "2025 Vintage Patent Leather Loafers – Red, Green, Black (Sizes 36–39)",
+    "category": "Shoes",
+    "image": "36.jpg",
+    "salesPrice": 64,
+    "profit": 12,
+    "commission": 6,
+    "available": "preorder"
+  },
+  {
+    "name": "Diamond Rhinestone Slides – Summer Thick-Heel (Colors: White, Black, Pink, Green)",
+    "category": "Shoes",
+    "image": "37.jpg",
     "salesPrice": 80,
-    "shippingNote": "",
+    "profit": 14,
+    "commission": 7,
     "available": "preorder"
   },
   {
-    "name": "Ladies Slippers",
-    "category": "Shoes",
-    "image": "2.png",
-    "salesPrice": 57,
-    "shippingNote": "",
+    "name": "Perfume Set for Women – 5 Variants (100ml)",
+    "category": "Beauty",
+    "image": "38.jpg",
+    "salesPrice": 16,
+    "profit": 3,
+    "commission": 1,
     "available": "preorder"
   },
   {
-    "name": "Sandals",
+    "name": "Nose Pore Strips – Charcoal and Blackhead Puller Sheets",
+    "category": "Beauty",
+    "image": "39.jpg",
+    "salesPrice": 1,
+    "profit": 0,
+    "commission": 0,
+    "available": "preorder"
+  },
+  {
+    "name": "Eyebrow Razor Set – 6 Colorful Pieces",
+    "category": "Accessories",
+    "image": "40.jpg",
+    "salesPrice": 6,
+    "profit": 1,
+    "commission": 0,
+    "available": "preorder"
+  },
+  {
+    "name": "Safe Foldable Eyebrow Razor Set – 5-Pack",
+    "category": "Accessories",
+    "image": "41.jpg",
+    "salesPrice": 9,
+    "profit": 2,
+    "commission": 1,
+    "available": "preorder"
+  },
+  {
+    "name": "Soft Silicone Tongue Scraper Brush – Blue, Pink, Purple",
+    "category": "Personal Care",
+    "image": "42.jpg",
+    "salesPrice": 3,
+    "profit": 0,
+    "commission": 0,
+    "available": "preorder"
+  },
+  {
+    "name": "Double-Layer Satin Bonnet with Bowtie – Afro Print Styles",
+    "category": "Accessories",
+    "image": "43.jpg",
+    "salesPrice": 19,
+    "profit": 3,
+    "commission": 2,
+    "available": "preorder"
+  },
+  {
+    "name": "Herbal Lip Mask Balm – Shea & Cherry Variants (30g)",
+    "category": "Beauty",
+    "image": "44.jpg",
+    "salesPrice": 9,
+    "profit": 2,
+    "commission": 1,
+    "available": "preorder"
+  },
+  {
+    "name": "Fruit-Flavored Lip Scrub Balm (30g)",
+    "category": "Beauty",
+    "image": "45.jpg",
+    "salesPrice": 15,
+    "profit": 3,
+    "commission": 1,
+    "available": "preorder"
+  },
+  {
+    "name": "2-in-1 Nose Blackhead Cleansing Brush – Multiple Colors",
+    "category": "Beauty",
+    "image": "46.jpg",
+    "salesPrice": 2,
+    "profit": 0,
+    "commission": 0,
+    "available": "preorder"
+  },
+  {
+    "name": "SADOER Collagen Lip Mask – 8g Cherry Patch",
+    "category": "Beauty",
+    "image": "47.jpg",
+    "salesPrice": 1,
+    "profit": 0,
+    "commission": 0,
+    "available": "preorder"
+  },
+  {
+    "name": "Double Induction Cooker – 1850W Dual Burner (Black)",
+    "category": "Electronics",
+    "image": "48.jpg",
+    "salesPrice": 470,
+    "profit": 85,
+    "commission": 43,
+    "available": "preorder"
+  },
+  {
+    "name": "Afro Wig Set – Long Wave Synthetic Hair Extension (18”)",
+    "category": "Beauty",
+    "image": "49.jpg",
+    "salesPrice": 148,
+    "profit": 27,
+    "commission": 13,
+    "available": "preorder"
+  },
+  {
+    "name": "100% Human Hair Deep Wave Bob Wig – T Frontal (Black)",
+    "category": "Wigs",
+    "image": "50.jpg",
+    "salesPrice": 322,
+    "profit": 59,
+    "commission": 29,
+    "available": "preorder"
+  },
+  {
+    "name": "13×4 Straight Bob Wig – 7 inch, 100% Human Hair",
+    "category": "Wigs",
+    "image": "51.jpg",
+    "salesPrice": 225,
+    "profit": 41,
+    "commission": 20,
+    "available": "preorder"
+  },
+  {
+    "name": "Perfume Sampler Gift Set – 12–14 Pcs (Mixed Fragrances)",
+    "category": "Warehouse Goods",
+    "image": "52.jpg",
+    "salesPrice": 301,
+    "profit": 55,
+    "commission": 27,
+    "available": "preorder"
+  },
+  {
+    "name": "Anti-Slip Soft Sole Sneakers – Black H3 (Size 38)",
     "category": "Shoes",
-    "image": "3.png",
-    "salesPrice": 52,
-    "shippingNote": "",
+    "image": "53.jpg",
+    "salesPrice": 24,
+    "profit": 4,
+    "commission": 2,
+    "available": "preorder"
+  },
+  {
+    "name": "Short Bob Lace Front Wig – 3-Part Closure",
+    "category": "Wigs",
+    "image": "54.jpg",
+    "salesPrice": 64,
+    "profit": 12,
+    "commission": 6,
+    "available": "preorder"
+  },
+  {
+    "name": "Lattafa Eman Perfume Spray – Red/Unisex Fragrance",
+    "category": "Beauty",
+    "image": "55.jpg",
+    "salesPrice": 81,
+    "profit": 15,
+    "commission": 7,
+    "available": "preorder"
+  },
+  {
+    "name": "Kinky Curly Lace Wig – 13×4 Frontal Afro Curl Style",
+    "category": "Wigs",
+    "image": "56.jpg",
+    "salesPrice": 89,
+    "profit": 16,
+    "commission": 8,
+    "available": "preorder"
+  },
+  {
+    "name": "Soft Mesh Walking Shoes – Women (2314, Size 38)",
+    "category": "Shoes",
+    "image": "57.jpg",
+    "salesPrice": 44,
+    "profit": 8,
+    "commission": 4,
+    "available": "preorder"
+  },
+  {
+    "name": "Summer Mesh Sports Shoes – White/Blue (Size 38)",
+    "category": "Shoes",
+    "image": "58.jpg",
+    "salesPrice": 26,
+    "profit": 5,
+    "commission": 2,
+    "available": "preorder"
+  },
+  {
+    "name": "2024 Mesh Lace Sport Shoes – Women (A65, Size 38)",
+    "category": "Shoes",
+    "image": "59.jpg",
+    "salesPrice": 46,
+    "profit": 8,
+    "commission": 4,
+    "available": "preorder"
+  },
+  {
+    "name": "Cotton Printed Bedcover – 200x225cm (Coffee Floral)",
+    "category": "Home Textiles",
+    "image": "60.jpg",
+    "salesPrice": 173,
+    "profit": 31,
+    "commission": 16,
     "available": "preorder"
   }
 ]

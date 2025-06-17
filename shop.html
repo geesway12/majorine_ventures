@@ -10,40 +10,34 @@
   <link rel="icon" href="icons/icon-192.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { background:#f8f9fa; }
-    .product-card{border:1px solid #ddd;border-radius:6px;background:#fff;padding:10px;margin-bottom:20px;height:100%;}
-    .product-card img{width:100%;height:180px;object-fit:cover;border-radius:5px;}
-    .hero-banner{width:100%;max-height:280px;object-fit:cover;border-radius:10px;}
-    .badge-ship{font-size:0.8rem;}
+    body { background: #f8f9fa; }
+    .product-card { border: 1px solid #ddd; border-radius: 6px; background: #fff; padding: 10px; margin-bottom: 20px; height: 100%; }
+    .product-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 5px; }
+    .hero-banner { width: 100%; max-height: 280px; object-fit: cover; border-radius: 10px; }
+    .badge-ship { font-size: 0.8rem; }
   </style>
 </head>
 <body>
 <div class="container py-4">
 
-  <!-- banner & intro -->
   <img src="assets/banner.jpg" alt="Shop Banner" class="hero-banner mb-3">
   <div class="text-center mb-4">
     <h2>🛍️ Welcome to Majorine Ventures</h2>
     <p>Get great deals shipped from China to Ghana.<br>🚚 Sea & ✈️ Air freight available. All prices in GHS.</p>
-    <p class="small text-muted">If shipping isn’t included, it won’t exceed 100 % of the sales price.</p>
+    <p class="small text-muted">If shipping isn’t included, it won’t exceed 100% of the sales price.</p>
     <a class="btn btn-success" href="https://chat.whatsapp.com/KGLdJbfazSHDJJRlDFhBbE" target="_blank">Join WhatsApp Group</a>
   </div>
 
-  <!-- filters -->
   <div class="row mb-3">
     <div class="col-md-6 mb-2"><input id="searchBox" class="form-control" placeholder="Search product or category…"></div>
     <div class="col-md-6 mb-2">
-      <select id="categoryFilter" class="form-select">
-        <option value="">All Categories</option>
-      </select>
+      <select id="categoryFilter" class="form-select"><option value="">All Categories</option></select>
     </div>
   </div>
 
-  <!-- grid -->
   <div id="productList" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3"></div>
 </div>
 
-<!-- order modal -->
 <div class="modal fade" id="orderModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <form id="orderForm" class="modal-content">
@@ -53,9 +47,9 @@
       </div>
       <div class="modal-body">
         <input type="hidden" id="selectedProductName">
-        <div class="mb-2"><input required class="form-control" placeholder="Your Name"      id="buyerName"></div>
-        <div class="mb-2"><input required class="form-control" placeholder="Phone Number"  id="buyerPhone"></div>
-        <div class="mb-2"><input required class="form-control" placeholder="Location"       id="buyerLocation"></div>
+        <div class="mb-2"><input required class="form-control" placeholder="Your Name" id="buyerName"></div>
+        <div class="mb-2"><input required class="form-control" placeholder="Phone Number" id="buyerPhone"></div>
+        <div class="mb-2"><input required class="form-control" placeholder="Location" id="buyerLocation"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -68,102 +62,117 @@
 <script src="libs/papaparse.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* ───────── state ───────── */
-const productList  = document.getElementById('productList');
-const searchBox    = document.getElementById('searchBox');
-const categorySel  = document.getElementById('categoryFilter');
-let   products     = [];
+const slug = c => c.trim().toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+const productList = document.getElementById('productList');
+const searchBox   = document.getElementById('searchBox');
+const categorySel = document.getElementById('categoryFilter');
+let   products    = [];
 
-/* ───────── render ───────── */
 function render(list){
   productList.innerHTML = '';
-  list.forEach(p=>{
-    const card = document.createElement('div');
-    card.className='col';
-    card.innerHTML = `
-      <div class="product-card h-100 d-flex flex-column justify-content-between">
-        <div>
-          <img src="assets/images/${p.category.toLowerCase()}/${p.image}" alt="${p.name}">
-          <h5 class="mt-2">${p.name}</h5>
-          <p class="mb-1"><strong>Category:</strong> ${p.category}</p>
-          <p class="mb-1"><strong>Price:</strong> GHS ${p.salesPrice}</p>
-          <span class="badge bg-info text-dark badge-ship">${p.shippingNote}</span>
+  list.forEach(p => {
+    const dir = slug(p.category);
+    const type = (p.shipping_type || '').toLowerCase();
+    let note = '';
+
+    if ((p.available || '').toLowerCase() === 'preorder') {
+      if (type === 'sea') note = '📦 Ships in 5–6 weeks';
+      else if (['air', 'air_express', 'phone'].includes(type)) note = '📦 Ships in 1–2 weeks';
+    }
+
+    if (!p.shippingFee || +p.shippingFee === 0) {
+      note += (note ? ' • ' : '') + 'Shipping fee excluded';
+    }
+
+    const noteHtml = note ? `<span class="badge bg-info text-dark badge-ship">${note}</span>` : '';
+
+    productList.insertAdjacentHTML('beforeend', `
+      <div class="col">
+        <div class="product-card h-100 d-flex flex-column justify-content-between">
+          <div>
+            <img src="assets/images/${dir}/${p.image}" 
+                 onerror="this.onerror=null;this.src='assets/images/placeholder.png';" 
+                 alt="${p.name}">
+            <h5 class="mt-2">${p.name}</h5>
+            <p class="mb-1"><strong>Category:</strong> ${p.category}</p>
+            <p class="mb-1"><strong>Price:</strong> GHS ${p.salesPrice}</p>
+            ${noteHtml}
+          </div>
+          <button class="btn btn-sm btn-success mt-2" onclick="openOrder('${p.name.replace(/'/g,'\\\'')}')">Order Now</button>
         </div>
-        <button class="btn btn-sm btn-success mt-2" onclick="openOrder('${p.name.replace(/'/g,'\\\'')}')">Order Now</button>
-      </div>`;
-    productList.appendChild(card);
+      </div>`);
   });
 }
 
-/* ───────── filters ───────── */
 function applyFilters(){
-  const q  = searchBox.value.toLowerCase();
-  const cat= categorySel.value.toLowerCase();
-  const show = products.filter(p=>
-    (p.name.toLowerCase().includes(q)||p.category.toLowerCase().includes(q)) &&
-    (!cat || p.category.toLowerCase()===cat)
-  );
-  render(show);
+  const q = searchBox.value.toLowerCase();
+  const cat = categorySel.value.toLowerCase();
+  render(products.filter(p =>
+    (p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)) &&
+    (!cat || p.category.toLowerCase() === cat)
+  ));
 }
-searchBox.addEventListener('input',applyFilters);
-categorySel.addEventListener('change',applyFilters);
+searchBox.addEventListener('input', applyFilters);
+categorySel.addEventListener('change', applyFilters);
 
-/* ───────── order flow ───────── */
 function openOrder(name){
-  document.getElementById('selectedProductName').value=name;
+  document.getElementById('selectedProductName').value = name;
   new bootstrap.Modal(document.getElementById('orderModal')).show();
 }
-document.getElementById('orderForm').addEventListener('submit',e=>{
+document.getElementById('orderForm').addEventListener('submit', e => {
   e.preventDefault();
-  const o={
-    product : document.getElementById('selectedProductName').value,
-    name    : document.getElementById('buyerName').value,
-    phone   : document.getElementById('buyerPhone').value,
+  const o = {
+    product: document.getElementById('selectedProductName').value,
+    name: document.getElementById('buyerName').value,
+    phone: document.getElementById('buyerPhone').value,
     location: document.getElementById('buyerLocation').value,
-    date    : new Date().toLocaleString(),
-    status  : 'Pending'
+    date: new Date().toLocaleString(),
+    status: 'Pending'
   };
-  const store = JSON.parse(localStorage.getItem('sales')||'[]');
-  store.push(o); localStorage.setItem('sales',JSON.stringify(store));
+  const store = JSON.parse(localStorage.getItem('sales') || '[]');
+  store.push(o);
+  localStorage.setItem('sales', JSON.stringify(store));
 
   const msg = `🛒 *Order from Majorine Storefront*:%0A🧾 Product: ${o.product}%0A👤 Name: ${o.name}%0A📞 Phone: ${o.phone}%0A📍 Location: ${o.location}%0A📅 Date: ${o.date}`;
-  window.open(`https://wa.me/233545200090?text=${msg}`,'_blank');   // direct chat link
+  window.open(`https://wa.me/233545200090?text=${msg}`, '_blank');
+
   e.target.reset();
   bootstrap.Modal.getInstance(document.getElementById('orderModal')).hide();
 });
 
-/* ───────── bootstrap products ───────── */
 (async function loadProducts(){
-  /* 1️⃣  prefer localStorage (saved by admin.html) */
-  const saved = JSON.parse(localStorage.getItem('products')||'[]');
+  const saved = JSON.parse(localStorage.getItem('products') || '[]');
   if(saved.length){ products = saved; ready(); return; }
 
-  /* 2️⃣  fallback JSON in data/ */
-  try{
+  try {
     const r = await fetch('data/products.json');
     if(r.ok){ products = await r.json(); ready(); return; }
-  }catch(_){}
+  } catch(_){}
 
-  /* 3️⃣  last-ditch: CSV in data/ */
-  Papa.parse('data/products.csv',{
-    header:true, download:true, skipEmptyLines:true,
-    complete: res=>{ products = res.data.map(row=>({
-        /* minimal mapping – assumes CSV already has salesPrice & shippingNote
-           (generated by admin.html or edited manually)                       */
-        name           : row.name,
-        category       : row.category,
-        image          : row.image,
-        salesPrice     : parseFloat(row.salesPrice||row.final_price||0),
-        shippingNote   : row.shippingNote || '',
-      })).filter(p=>p.salesPrice);
+  Papa.parse('data/products.csv', {
+    header: true,
+    download: true,
+    skipEmptyLines: true,
+    complete: res => {
+      products = res.data.map(row => ({
+        name: row.name,
+        category: row.category,
+        image: row.image,
+        salesPrice: +(row.salesPrice || row.final_price || 0),
+        shippingFee: +(row.shippingFee || 0),
+        shipping_type: row.shipping_type || '',
+        available: row.available || '',
+        china_shipping: row.china_shipping
+      })).filter(p => p.salesPrice);
       ready();
     }
   });
 
   function ready(){
-    /* populate category dropdown */
-    [...new Set(products.map(p=>p.category))].sort().forEach(c=>{
-      const o=document.createElement('option'); o.value=o.textContent=c; categorySel.appendChild(o);
+    [...new Set(products.map(p => p.category))].sort().forEach(c => {
+      const o = document.createElement('option');
+      o.value = o.textContent = c;
+      categorySel.appendChild(o);
     });
     render(products);
   }
